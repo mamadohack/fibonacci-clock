@@ -7,3 +7,146 @@
     margin: 0;
     box-sizing: border-box;
   }
+
+  @media (min-width: 1025px) {
+    .container {
+        width: 60%;
+    }
+}
+  .container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto
+}
+
+@media (min-width: 500px) {
+    .container {
+        width:80%
+    }
+}
+
+@media (min-width: 769px) {
+    .container {
+        width:70%
+    }
+}
+
+@media (min-width: 1025px) {
+    .container {
+        width:60%
+    }
+}
+
+.main {
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+.box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    outline: 3px solid #242628;
+    -webkit-transition: background-color .5s ease,color .5s ease;
+    transition: background-color .5s ease,color .5s ease;
+    position: absolute
+}
+
+.box-1a,.box-1b {
+    width: 12.5%;
+    height: 20%;
+    font-size: 20px
+}
+
+@media (min-width: 769px) {
+    .box-1a,.box-1b {
+        font-size:40px
+    }
+}
+
+.box-1a {
+    top: 0;
+    left: 25%
+}
+
+.box-1b {
+    top: 20%;
+    left: 25%
+}
+
+.box-2 {
+    width: 25%;
+    height: 40%;
+    font-size: 40px;
+    top: 0;
+    left: 0
+}
+
+@media (min-width: 769px) {
+    .box-2 {
+        font-size:80px
+    }
+}
+
+.box-3 {
+    width: 37.5%;
+    height: 60%;
+    font-size: 80px;
+    bottom: 0;
+    left: 0
+}
+
+@media (min-width: 769px) {
+    .box-3 {
+        font-size:160px
+    }
+}
+
+.box-5 {
+    width: 62.5%;
+    height: 100%;
+    font-size: 140px;
+    top: 0;
+    right: 0
+}
+
+@media (min-width: 769px) {
+    .box-5 {
+        font-size:280px
+    }
+}
+
+.main {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.box-size {
+  opacity: 0;
+  -webkit-transition: opacity .5s ease;
+  transition: opacity .5s ease
+}
+
+.clock.numbers-are-visible .box-size {
+  opacity: .85
+}
+
+.clock {
+  background: rgba(0,0,0,.3);
+  position: relative;
+  padding-bottom: 62.5%;
+  margin-bottom: 60px
+}
+
+.color_palette_select {
+  margin-bottom: 15px
+}
+
+.color_palette_select-label {
+  display: block
+}
