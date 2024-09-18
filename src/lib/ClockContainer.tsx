@@ -4,6 +4,8 @@ import { MainContext, MainContexttype } from "./ContextProvider";
 import { formatTime, updateBoxes } from "./util/helper";
 import UpdateTime from "./UpdateTime";
 import PlayStopClock from "./PlayStopClock";
+import DigitalClock from "./DigitalClock";
+import './FiboClock.css'
 interface ClockContainer {
   boxes: [];
   colorKey: string;
@@ -47,6 +49,7 @@ function ClockContainer() {
         colorKey={state.colorKey}
         areNumbersVisible={state.areNumbersVisible}
       />
+      <DigitalClock hours={state.realTime.getHours()} minutes={state.realTime.getMinutes()}/>
       <div id="Dashboard">
         <button
           className="btn"
