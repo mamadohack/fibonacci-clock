@@ -1,9 +1,9 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import boxes from "./util/boxes";
 import { formatTime } from "./util/helper";
 export type MainContexttype = {
     state : any;
-    changeState : (e:any) => void
+    changeState : (e:any) => void;
 }
 
 export const MainContext = createContext<MainContexttype | null >(null);
@@ -15,10 +15,12 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
 
   const [MainState, setMainState] = useState({
     boxes,
-    colorKey: "default",
+    colorKey: "sandy",
     currentTime: formatTime(initialHours, initialMinutes, initialSeconds),
     areNumbersVisible: true,
     isOptionsOpen: false,
+    on_off_changing:false,
+    start_stop_clock:true
   });
   return <MainContext.Provider value={{state:MainState,changeState:setMainState}}>{children}</MainContext.Provider>;
 }

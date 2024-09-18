@@ -2,17 +2,34 @@ import classNames from "classnames";
 import colors from "./util/colors";
 interface ClockProps {
   boxes: any;
-  colorKey: string;
-  areNumbersVisible: any;
+  colorKey: colorKeytype;
+  areNumbersVisible: boolean;
 }
-interface BoxProps {
+export type colorKeytype = keyof typeof colors;
+export interface boxtype {
   name: string;
   size: number;
-  represents: [any];
-  colorKey: keyof typeof colors;
+  represents: string[];
+}
+interface BoxProps extends boxtype {
+  colorKey: colorKeytype;
+}
+function Clock({ boxes, colorKey, areNumbersVisible }: ClockProps) {
+  const clockClasses = classNames("clock", {
+    "numbers-are-visible": areNumbersVisible,
+  });
+  return (
+    <div className={clockClasses}>
+      {boxes.map((box: boxtype) => (
+        <Box key={box.name} {...box} colorKey={colorKey} />
+      ))}
+    </div>
+  );
 }
 
-const Box = ({ name, size, represents, colorKey }:BoxProps) => {
+export default Clock;
+
+const Box = ({ name, size, represents, colorKey }: BoxProps) => {
   let colorIndex = 0;
   if (represents.length === 1 && represents[0] === "hours") {
     colorIndex = 1;
@@ -34,18 +51,3 @@ const Box = ({ name, size, represents, colorKey }:BoxProps) => {
     </div>
   );
 };
-
-function Clock({ boxes, colorKey, areNumbersVisible }: ClockProps) {
-  const clockClasses = classNames("clock", {
-    "numbers-are-visible": areNumbersVisible,
-  });
-  return (
-    <div className={clockClasses}>
-      {boxes.map((box:any) => (
-        <Box key={box.name} {...box} colorKey={colorKey} />
-      ))}
-    </div>
-  );
-}
-
-export default Clock;
