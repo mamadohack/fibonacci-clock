@@ -5,7 +5,7 @@ function App() {
     console.log('app rendered')
 
   return (
-    <main className="main">
+    <main className="main" >
       <div className="container">
       <ClockContainer></ClockContainer>
       </div>

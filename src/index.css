@@ -132,7 +132,12 @@
   padding-block: 10px;
   font-weight: 600;
   border-radius: 8px;
+  border: 1px solid grey;
   color: white;
   font-size: large;
   background-color: rgb(83, 83, 83);
+  transition: 250ms ease-in-out;
+}
+.btn:hover {
+  background-color: rgb(148, 148, 148);
 }

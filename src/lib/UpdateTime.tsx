@@ -3,33 +3,35 @@ import { MainContext, MainContexttype } from "./ContextProvider";
 import { formatTime, updateBoxes } from "./util/helper";
 
 function UpdateTime() {
-    console.log('UpdateTime rended');
+  console.log("UpdateTime rended");
   const intervalId = useRef<any>(null);
-  const {state,changeState} = useContext(MainContext) as MainContexttype
+  const { state, changeState } = useContext(MainContext) as MainContexttype;
 
-  function updateTime(hours: number, minutes: number, seconds: number) {
-    const newCurrentTime = formatTime(hours, minutes, seconds)
-    changeState((p:any) => {return {...p,currentTime: newCurrentTime,
-      boxes: updateBoxes(p.boxes, newCurrentTime.hours, newCurrentTime.minutes)}})
-  }
-  const getCurrentTime = () => {
-    const now = new Date()
-    const hours = now.getHours()
-    const minutes = now.getMinutes()
-    const seconds = now.getSeconds()
-
-    updateTime(hours, minutes, seconds)
-  }
+  const ChangeBoxes = () => {
+  
+    changeState((p: any) => {
+      return {
+        ...p,
+        boxes: updateBoxes(
+          p.boxes,
+          p.currentTime.hours,
+          p.currentTime.minutes
+        ),
+      };
+    });
+  };
   const startClock = () => {
-    intervalId.current = setInterval(getCurrentTime, 100 * 15);
+    intervalId.current = setInterval(ChangeBoxes, 100 * 20);
   };
   const stopClock = () => {
     clearInterval(intervalId.current);
-  }
+  };
   useEffect(() => {
     startClock();
 
-    return () => {stopClock()}
+    return () => {
+      stopClock();
+    };
   }, []);
   return null;
 }

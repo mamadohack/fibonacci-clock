@@ -6,11 +6,12 @@ function PlayStopClock() {
   console.log("playstopclock");
   const intervalIdClock = useRef<any>(null);
   const { state, changeState } = useContext(MainContext) as MainContexttype;
-  function updateTime(hours: number, minutes: number, seconds: number) {
+  function updateTime(hours: number, minutes: number, seconds: number,now:Date) {
     const newCurrentTime = formatTime(hours, minutes, seconds);
     changeState((p: any) => {
       return {
         ...p,
+        realTime:now,
         currentTime: newCurrentTime,
         boxes: updateBoxes(
           p.boxes,
@@ -21,12 +22,13 @@ function PlayStopClock() {
     });
   }
   const getCurrentTime = () => {
-    const now = new Date();
+    const now = state.realTime;
+    now.setMinutes(now.getMinutes() + 1);
     const hours = now.getHours();
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
 
-    updateTime(hours, minutes, seconds);
+    updateTime(hours, minutes, seconds,now);
   };
   const startClock = () => {
 

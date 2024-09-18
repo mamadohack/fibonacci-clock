@@ -16,6 +16,7 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
   const [MainState, setMainState] = useState({
     boxes,
     colorKey: "sandy",
+    realTime: initialTime,
     currentTime: formatTime(initialHours, initialMinutes, initialSeconds),
     areNumbersVisible: true,
     isOptionsOpen: false,

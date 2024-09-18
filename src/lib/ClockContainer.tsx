@@ -12,12 +12,18 @@ interface ClockContainer {
 }
 function ClockContainer() {
   const { state, changeState } = useContext(MainContext) as MainContexttype;
-  function updateTime(hours: number, minutes: number, seconds: number) {
+  function updateTime(
+    hours: number,
+    minutes: number,
+    seconds: number,
+    now: Date
+  ) {
     const newCurrentTime = formatTime(hours, minutes, seconds);
     changeState((p: any) => {
       return {
         ...p,
         currentTime: newCurrentTime,
+        realTime: now,
         boxes: updateBoxes(
           p.boxes,
           newCurrentTime.hours,
@@ -28,11 +34,11 @@ function ClockContainer() {
   }
 
   useEffect(() => {
-    const now = new Date();
+    const now = state.realTime;
     const hours = now.getHours();
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
-    updateTime(hours, minutes, seconds);
+    updateTime(hours, minutes, seconds, now);
   }, []);
   return (
     <>
@@ -46,7 +52,8 @@ function ClockContainer() {
           className="btn"
           onClick={() => {
             changeState((p: any) => {
-              return { ...p, on_off_changing: !p.on_off_changing };
+              return { ...p,
+                 on_off_changing: !p.on_off_changing };
             });
           }}
         >
@@ -55,10 +62,13 @@ function ClockContainer() {
         <button
           className="btn"
           onClick={() => {
-            const now = state.currentTime;
-            const hours = now.hours;
-            const minutes = now.minutes;
-            updateTime(hours, minutes + 5, 0);
+            console.log('+5 min')
+            const now = state.realTime;
+            now.setMinutes(now.getMinutes() + 5);
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            updateTime(hours, minutes, seconds, now);
           }}
         >
           + 5 minite
@@ -66,17 +76,20 @@ function ClockContainer() {
         <button
           className="btn"
           onClick={() => {
-            const now = state.currentTime;
-            const hours = now.hours;
-            const minutes = now.minutes;
-            updateTime(hours, minutes - 5, 0);
+            console.log('-5 min')
+            const now = state.realTime;
+            now.setMinutes(now.getMinutes() - 5);
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            updateTime(hours, minutes, seconds, now);
           }}
         >
           - 5 minite
         </button>
       </div>
       {state.on_off_changing && <UpdateTime />}
-      {state.start_stop_clock && <PlayStopClock/>}
+      {state.start_stop_clock && <PlayStopClock />}
     </>
   );
 }
