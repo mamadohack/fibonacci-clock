@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import { MainContext, MainContexttype } from "./ContextProvider";
-import { formatTime, updateBoxes } from "./util/helper";
+import { updateBoxes } from "./util/helper";
 
 function UpdateTime() {
   console.log("UpdateTime rended");
@@ -8,7 +8,6 @@ function UpdateTime() {
   const { state, changeState } = useContext(MainContext) as MainContexttype;
 
   const ChangeBoxes = () => {
-  
     changeState((p: any) => {
       return {
         ...p,

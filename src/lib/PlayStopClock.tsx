@@ -1,17 +1,25 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { MainContext, MainContexttype } from "./ContextProvider";
 import { formatTime, updateBoxes } from "./util/helper";
 
 function PlayStopClock() {
   console.log("playstopclock");
+  const timeRest= 60- (new Date().getSeconds());
+  const [delaytimer,setDelayTimer] = useState(timeRest);
+  if(timeRest !== delaytimer) setDelayTimer(timeRest);
   const intervalIdClock = useRef<any>(null);
   const { state, changeState } = useContext(MainContext) as MainContexttype;
-  function updateTime(hours: number, minutes: number, seconds: number,now:Date) {
+  function updateTime() {
+    const now = state.realTime;
+    now.setMinutes(now.getMinutes() + 1);
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
     const newCurrentTime = formatTime(hours, minutes, seconds);
     changeState((p: any) => {
       return {
         ...p,
-        realTime:now,
+        realTime: now,
         currentTime: newCurrentTime,
         boxes: updateBoxes(
           p.boxes,
@@ -21,18 +29,9 @@ function PlayStopClock() {
       };
     });
   }
-  const getCurrentTime = () => {
-    const now = state.realTime;
-    now.setMinutes(now.getMinutes() + 1);
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
 
-    updateTime(hours, minutes, seconds,now);
-  };
   const startClock = () => {
-
-    intervalIdClock.current = setInterval(getCurrentTime, 1000 * 60);
+    intervalIdClock.current = setInterval(updateTime, 1000 * delaytimer);
   };
   const stopClock = () => {
     clearInterval(intervalIdClock.current);
@@ -43,7 +42,7 @@ function PlayStopClock() {
     return () => {
       stopClock();
     };
-  }, []);
+  }, [delaytimer]);
 
   return null;
 }

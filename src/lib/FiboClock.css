@@ -87,3 +87,17 @@
     }
   
 
+    #clock_state {
+
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      & p {
+        text-align: center;
+        font-size: large;
+        font-weight: bolder;
+        padding-bottom: 10px;
+        border-bottom: 2px solid grey;
+      }
+    }
