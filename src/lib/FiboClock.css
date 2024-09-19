@@ -1,103 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=Text+Me+One&display=swap');
-    .clockk {
-      min-height: 180px;
-      max-width: 400px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-      margin-inline: auto;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-      .bigtime {
-        width: 400px;
-        height: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;
-        position: relative;
-        border-radius: 30px;
-        background:  #1f1f1f;
-        user-select: none;
-      }
-      
-      .lowtime{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        user-select: none;
-        margin-top: -10px;
-        height: 80px;
-        border-radius: 30px;
-        width: 140px;
-        
-        .bottom{
-          color: crimson;
-          width: 60px;
-        }
-      }
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
 
-      .dot {
-        position: absolute;
-      }
+.main {
+  padding: 30px 0;
+}
 
-      .time {
-        color: #1f1f1f;
-        font-size: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80px;
-        aspect-ratio: 1 / 1;
-      }
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 3px solid #242628;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  position: absolute;
+}
 
-      .hr {
-        color: snow;
-        height: 200px;
-        width: 250px;
-        font-size: 7rem;
-      }
-    }
-    
-     a{
-      height: 50px;
-      width: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: fixed;
-      background: snow;
-      border-radius: 10px;
-      bottom: 30px;
-      right: 30px;
-      user-select: none;
-      transition: all .3s;
-      cursor: pointer;
+.box-11, .box-12 {
+  width: 12.5%;
+  height: 20%;
+  font-size: 20px;
+}
 
-      svg{
-        height: 30px;
-        width: 30px;
-        cursor: pointer;
-        fill: crimson;
-      }
-    }
+.box-11 {
+  top: 0;
+  left: 25%;
+}
 
-    a:hover{
-      box-shadow: 2px 2px 1px crimson;
-    }
-  
+.box-12 {
+  top: 20%;
+  left: 25%;
+}
 
-    #clock_state {
+.box-2 {
+  width: 25%;
+  height: 40%;
+  font-size: 40px;
+  top: 0;
+  left: 0;
+}
 
-      background-color: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 30px;
-      & p {
-        text-align: center;
-        font-size: large;
-        font-weight: bolder;
-        padding-bottom: 10px;
-        border-bottom: 2px solid grey;
-      }
-    }
+.box-3 {
+  width: 37.5%;
+  height: 60%;
+  font-size: 80px;
+  bottom: 0;
+  left: 0;
+}
+
+.box-5 {
+  width: 62.5%;
+  height: 100%;
+  font-size: 140px;
+  top: 0;
+  right: 0;
+}
+
+.box-size {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.clock.numbers-are-visible .box-size {
+  opacity: 0.85;
+}
+
+.clock {
+  background: rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding-bottom: 62.5%;
+  margin-bottom: 60px;
+}
+
+.color_palette_select {
+  margin-bottom: 15px;
+}
+
+.color_palette_select-label {
+  display: block;
+}
+
+/* Media Queries */
+@media (min-width: 500px) {
+  .container {
+      width: 80%;
+  }
+}
+
+@media (min-width: 769px) {
+  .container {
+      width: 70%;
+  }
+
+  .box-11, .box-12 {
+      font-size: 40px;
+  }
+
+  .box-2 {
+      font-size: 80px;
+  }
+
+  .box-3 {
+      font-size: 160px;
+  }
+
+  .box-5 {
+      font-size: 280px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+      width: 60%;
+  }
+}
+#Dashboard {
+ 
+}
+.btn {
+  padding-inline: 20px;
+  padding-block: 10px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid grey;
+  color: white;
+  font-size: large;
+  background-color: rgb(83, 83, 83);
+  transition: 250ms ease-in-out;
+}
+.btn:hover {
+  background-color: rgb(148, 148, 148);
+}

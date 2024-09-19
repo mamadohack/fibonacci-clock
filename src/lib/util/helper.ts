@@ -41,20 +41,21 @@ export function formatHours (hours:hours) {
     }
   }
   
-  function getRandomCombo (value:number) {
+  function getRandomCombo (value:number,SameDisplay:boolean) {
     const combosForValue = boxCombos[value as unknown as BoxCombosTypeIndex ];
     let randomCombo : number[] =[] ;
   
     if (combosForValue.length) {
-      randomCombo = combosForValue[Math.floor(Math.random() * combosForValue.length)];
+      if (SameDisplay) randomCombo = combosForValue[0];
+        else randomCombo = combosForValue[Math.floor(Math.random() * combosForValue.length)];
     }
   
     return randomCombo;
   }
   
-  export function updateBoxes (boxes:boxextype, hours:hours, minutes:minutes) {
-    const comboForHours = getRandomCombo(hours );
-    const comboForMinutes = getRandomCombo(minutes / 5);
+  export function updateBoxes (boxes:boxextype, hours:hours, minutes:minutes,SameDisplay:boolean) {
+    const comboForHours = getRandomCombo(hours,SameDisplay );
+    const comboForMinutes = getRandomCombo(minutes / 5,SameDisplay);
   
     return boxes.map((box, index) => {
       const represents = [];

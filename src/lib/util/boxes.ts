@@ -1,11 +1,11 @@
 export default [
     {
-      name: 'box-1a',
+      name: 'box-11',
       size: 1,
       represents: []
     },
     {
-      name: 'box-1b',
+      name: 'box-12',
       size: 1,
       represents: []
     },

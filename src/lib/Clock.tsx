@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import colors from "./util/colors";
 interface ClockProps {
-  boxes: any;
+  boxes: boxtype[];
   colorKey: colorKeytype;
   areNumbersVisible: boolean;
 }
@@ -9,7 +9,7 @@ export type colorKeytype = keyof typeof colors;
 export interface boxtype {
   name: string;
   size: number;
-  represents: string[];
+  represents: never[];
 }
 interface BoxProps extends boxtype {
   colorKey: colorKeytype;

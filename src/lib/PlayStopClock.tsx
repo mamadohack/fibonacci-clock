@@ -1,9 +1,8 @@
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { MainContext, MainContexttype } from "./ContextProvider";
 import { formatTime, updateBoxes } from "./util/helper";
 
 function PlayStopClock() {
-  console.log("playstopclock");
   const timeRest= 60- (new Date().getSeconds());
   const [delaytimer,setDelayTimer] = useState(timeRest);
   if(timeRest !== delaytimer) setDelayTimer(timeRest);
@@ -24,7 +23,8 @@ function PlayStopClock() {
         boxes: updateBoxes(
           p.boxes,
           newCurrentTime.hours,
-          newCurrentTime.minutes
+          newCurrentTime.minutes,
+          p.SameDisplay
         ),
       };
     });
